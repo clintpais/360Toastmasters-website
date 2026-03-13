@@ -116,3 +116,18 @@ input:focus,textarea:focus{border-color:rgba(214,178,94,.6)}
   .gallery{grid-template-columns:1fr}
   .gallery__item img{height:240px}
 }
+
+
+.meeting-time{
+  margin-left:6px;
+}
+
+/* Mobile layout */
+@media (max-width: 600px){
+
+  .meeting-time{
+    display:block;
+    margin-left:0;
+  }
+
+}
