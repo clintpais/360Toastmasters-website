@@ -61,8 +61,8 @@ fetch(sheetURL)
     const li = document.createElement("li");
 
     li.innerHTML = `
-  <strong>${date} (${day})</strong><br>
-  ${time}
+  <strong>${date} (${day})</strong>
+<span class="meeting-time">${time}</span>
   <a class="btn btn--small" target="_blank"
   href="https://wa.me/919538710383?text=Hello! I would like to attend the ${date} meeting of 360° Toastmasters Club Bengaluru.">
   RSVP
