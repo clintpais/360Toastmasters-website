@@ -14,49 +14,49 @@ fetch(sheetURL)
   rows.forEach((row, index) => {
 
     const cols = row.split(",");
-    if(cols.length < 3) return;
+    if(cols.length < 4) return;
 
     const meeting = cols[0].trim();
-const date = cols[1].trim();
-const day = cols[2].trim();
-const time = cols[3].trim();
+    const date = cols[1].trim();
+    const day = cols[2].trim();
+    const time = cols[3].trim();
 
     // Update next meeting card
     if(index === 0){
 
-  document.getElementById("nextMeetingNumber").textContent = "Meeting #" + meeting;
+      document.getElementById("nextMeetingNumber").textContent = "Meeting #" + meeting;
+      document.getElementById("nextMeetingDate").textContent = date;
+      document.getElementById("nextMeetingDay").textContent = day;
+      document.getElementById("nextMeetingTime").textContent = time;
 
-  document.getElementById("nextMeetingDate").textContent = date;
-  document.getElementById("nextMeetingDay").textContent = day;
-  document.getElementById("nextMeetingTime").textContent = time;
+      // Accurate Days Left calculation
+      const meetingDate = new Date(date);
+      const today = new Date();
 
-  // Days left calculation (accurate)
-const meetingDate = new Date(date);
-const today = new Date();
+      meetingDate.setHours(0,0,0,0);
+      today.setHours(0,0,0,0);
 
-// Normalize both dates to midnight
-meetingDate.setHours(0,0,0,0);
-today.setHours(0,0,0,0);
+      const diffTime = meetingDate - today;
+      const daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-const diffTime = meetingDate - today;
-const daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      let daysText = "";
 
-let daysText = "";
+      if(daysLeft > 1){
+        daysText = daysLeft + " days";
+      }
+      else if(daysLeft === 1){
+        daysText = "1 day";
+      }
+      else if(daysLeft === 0){
+        daysText = "Today";
+      }
+      else{
+        daysText = "Completed";
+      }
 
-if(daysLeft > 1){
-  daysText = daysLeft + " days";
-}
-else if(daysLeft === 1){
-  daysText = "1 day";
-}
-else if(daysLeft === 0){
-  daysText = "Today";
-}
-else{
-  daysText = "Completed";
-}
+      document.getElementById("daysLeft").textContent = daysText;
 
-document.getElementById("daysLeft").textContent = daysText;
+    }
 
     const li = document.createElement("li");
 
