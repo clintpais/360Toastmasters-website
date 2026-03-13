@@ -29,8 +29,34 @@ const time = cols[3].trim();
   document.getElementById("nextMeetingDate").textContent = date;
   document.getElementById("nextMeetingDay").textContent = day;
   document.getElementById("nextMeetingTime").textContent = time;
+
+  // Days left calculation (accurate)
+const meetingDate = new Date(date);
+const today = new Date();
+
+// Normalize both dates to midnight
+meetingDate.setHours(0,0,0,0);
+today.setHours(0,0,0,0);
+
+const diffTime = meetingDate - today;
+const daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+let daysText = "";
+
+if(daysLeft > 1){
+  daysText = daysLeft + " days";
+}
+else if(daysLeft === 1){
+  daysText = "1 day";
+}
+else if(daysLeft === 0){
+  daysText = "Today";
+}
+else{
+  daysText = "Completed";
 }
 
+document.getElementById("daysLeft").textContent = daysText;
 
     const li = document.createElement("li");
 
