@@ -131,3 +131,71 @@ input:focus,textarea:focus{border-color:rgba(214,178,94,.6)}
   }
 
 }
+
+/* Modern Meeting Schedule Layout */
+
+#meetingList{
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#meetingList li{
+  display: grid;
+  grid-template-columns: 2fr 2fr auto;
+  align-items: center;
+
+  padding: 16px 20px;
+  margin-bottom: 12px;
+
+  border-radius: 10px;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+
+  transition: all 0.2s ease;
+}
+
+/* Hover effect (subtle, modern) */
+#meetingList li:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* Left section (date + day) */
+.meeting-left{
+  display: flex;
+  flex-direction: column;
+}
+
+.meeting-date{
+  font-weight: 700;
+}
+
+.meeting-day{
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Center (time) */
+.meeting-center{
+  font-weight: 500;
+}
+
+/* Right (button) */
+.meeting-right{
+  text-align: right;
+}
+
+/* Mobile layout */
+@media (max-width: 640px){
+
+  #meetingList li{
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .meeting-right{
+    text-align: left;
+  }
+
+}
